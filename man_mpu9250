@@ -1,0 +1,15 @@
+class MPU9250
+
+	def __init__(self, address = ADDRESS, accelscale = ACCELSCALE, acceldivider = ACCELDIVIDER, gyroscale = GYROSCALE, gyrodivider = GYRODIVIDER)
+
+	def testConnection(self)
+		return true/false
+
+	def getAccel(self)
+		return AccelX, AccelY, AccelZ
+
+	def getGyro(self)
+		return GyroX, GyroY, GyroZ
+
+	def getAngle(self)
+		return false/angle(double)
