@@ -5,8 +5,8 @@ import RPi.GPIO as GPIO
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-ADDRESS1 = [0x62,4]
-ADDRESS2 = [0x63,14]
+ADDRESS1 = [0x62,4] # only work with rotation
+ADDRESS2 = [0x63,14] # work with all functions
 
 CMD_FAST = 0b00000000
 CMD_DAC = 0b01000000
