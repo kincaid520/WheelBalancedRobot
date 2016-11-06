@@ -81,7 +81,7 @@ class MPU9250:
 			return True
 		else:
 			return False
-	
+
 	def getTemp(self):
 		temparature = self.ReadReg(TEMP_H)<<8
 		temparature += self.ReadReg(TEMP_L)
@@ -93,7 +93,7 @@ class MPU9250:
 	def setGyroScale(self, scale):
 		return self.WriteReg(GYRO_CONFIG, scale)
 
-	def getAccel(self):
+	def get_accel(self):
 		AccelXH = self.ReadReg(ACCEL_XH)
 		AccelXL = self.ReadReg(ACCEL_XL)
 		AccelX = (AccelXH<<8) + AccelXL
@@ -114,7 +114,7 @@ class MPU9250:
 
 		return AccelX, AccelY, AccelZ
 
-	def getGyro(self):
+	def get_gyro(self):
 		GyroXH = self.ReadReg(GYRO_XH)
 		GyroXL = self.ReadReg(GYRO_XL)
 		GyroX = (GyroXH<<8) + GyroXL
@@ -134,8 +134,8 @@ class MPU9250:
 			GyroZ = GyroZ-65536.0
 
 		return GyroX, GyroY, GyroZ
-	
-	def getAngle(self):
+
+	def get_angle(self):
 		for i in range(3):
 			if self.accel[i] > self.acceldivider or self.accel[i] < self.acceldivider*(-1):
 				return False
@@ -144,11 +144,11 @@ class MPU9250:
 if __name__ == "__main__":
 	mpu9250 = MPU9250()
 	print "Connection: ", mpu9250.testConnection()
-	
+
 	times = 0.0
 	while True:
-		mpu9250.accel = mpu9250.getAccel()
+		mpu9250.accel = mpu9250.get_accel()
 
-		print mpu9250.getAngle()
+		print mpu9250.get_angle()
 
 		sleep(0.05)

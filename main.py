@@ -10,14 +10,14 @@ SCANNING_TIMES = 1000
 
 # Three ICs to use
 sensor = mpu9250.MPU9250()
-dac_left = mcp4725.MCP4725(mcp4725.ADDRESS1)
-dac_right = mcp4725.MCP4725(mcp4725.ADDRESS2)
+dacLeft = mcp4725.MCP4725(mcp4725.ADDRESS1)
+dacRight = mcp4725.MCP4725(mcp4725.ADDRESS2)
 
 # Default/Reset value
-dac_right.setVoltage(0)
-dac_right.clockwise()
-dac_left.setVoltage(0)
-dac_left.clockwise()
+dacRight.set_voltage(0)
+dacRight.clockwise()
+dacLeft.set_voltage(0)
+dacLeft.clockwise()
 
 #Print the plot (debug)
 if DEBUGON:
@@ -48,10 +48,10 @@ for i in range( SCANNING_TIMES ):
 		GSenPlotz.append(Gsensor[2])
     print "Accel: x: %5.f, y: %5.f, z: %5.f \t Gyro:  x: %5.f, y: %5.f, z: %5.f" %(Asensor[0], Asensor[1], Asensor[2], Gsensor[0], Gsensor[1], Gsensor[2])
 
-    if Gsensor[1] < 0:
-		dac_left.setVoltage(int(Gsensor[1] * 4095 * (-1) / 32768))
-    else:
-		dac_left.setVoltage(Gsensor[1] * 4095 / 32768 )
+#    if Gsensor[1] < 0:
+#		dacLeft.set_voltage(int(Gsensor[1] * 4095 * (-1) / 32768))
+#    else:
+#		dacLeft.set_voltage(Gsensor[1] * 4095 / 32768 )
 #	sleep(0.001)
 
 # print the plot (debug)

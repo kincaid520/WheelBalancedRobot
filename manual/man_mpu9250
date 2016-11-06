@@ -5,11 +5,11 @@ class MPU9250
 	def testConnection(self)
 		return true/false
 
-	def getAccel(self)
+	def get_accel(self)
 		return AccelX, AccelY, AccelZ
 
-	def getGyro(self)
+	def get_gyro(self)
 		return GyroX, GyroY, GyroZ
 
-	def getAngle(self)
+	def get_angle(self)
 		return false/angle(double)

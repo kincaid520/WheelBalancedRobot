@@ -5,8 +5,8 @@ import RPi.GPIO as GPIO
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-ADDRESS1 = [0x62,4] # only work with rotation
-ADDRESS2 = [0x63,14] # work with all functions
+ADDRESS1 = [0x62,4] # dac_left
+ADDRESS2 = [0x63,14] # dac_right
 
 CMD_FAST = 0b00000000
 CMD_DAC = 0b01000000
@@ -27,28 +27,30 @@ class MCP4725:
 		self.GPIOPIN = addr[1]
 		GPIO.setup(self.GPIOPIN, GPIO.OUT)
 		GPIO.output(self.GPIOPIN, GPIO.LOW)
+                self.set_voltage(0)
+                self.clockwise()
 
-	def setVoltage(self, voltage):
+	def set_voltage(self, voltage):
 		if voltage > 4095:
 			voltage = 4095
 			print "WARNING: voltage more than 4095"
+                        print "Voltage has been setting to 4095"
 		elif voltage < 0:
 			voltage = 0
 			print "WARNING: voltage less than 0"
+                        print "Voltage has been setting to 0"
 
 		self.voltage = voltage
 
 		return self.bus.write_i2c_block_data(self.address, CMD_FAST + (voltage >> 8), [voltage])
 
-	def clockwise(self):
+	def set_clockwise(self):
 		GPIO.output(self.GPIOPIN, GPIO.LOW)
 
-	def counterclockwise(self):
+	def set_counterclockwise(self):
 		GPIO.output(self.GPIOPIN, GPIO.HIGH)
 
 if __name__ == "__main__":
-	test1 = MCP4725(0x62)
-	#test2 = MCP4725(0x63)
-	test1.setVoltage(2048)
-	#test2.setVoltage(4095)
+	dacLeft = MCP4725(ADDRESS1)
+	dacRight = MCP4725(ADDRESS2)
 
