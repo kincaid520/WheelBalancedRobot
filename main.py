@@ -15,9 +15,9 @@ dacRight = mcp4725.MCP4725(mcp4725.ADDRESS2)
 
 # Default/Reset value
 dacRight.set_voltage(0)
-dacRight.clockwise()
+dacRight.set_clockwise()
 dacLeft.set_voltage(0)
-dacLeft.clockwise()
+dacLeft.set_clockwise()
 
 #Print the plot (debug)
 if DEBUGON:
@@ -31,8 +31,8 @@ if DEBUGON:
 # Keep scanning (Debugging)
 #MemAccel = []
 for i in range( SCANNING_TIMES ):
-    Asensor = sensor.getAccel() # tuple:[x,y,z]
-    Gsensor = sensor.getGyro() # tuple:[x,y,z]
+    Asensor = sensor.get_accel() # tuple:[x,y,z]
+    Gsensor = sensor.get_gyro() # tuple:[x,y,z]
 #	if Asensor-MemAccel > THRESHOLD:
 #		MemAccel = Asensor
 #		Asensor = sensor.getAccel()

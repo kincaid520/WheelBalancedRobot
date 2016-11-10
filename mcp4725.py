@@ -28,7 +28,7 @@ class MCP4725:
 		GPIO.setup(self.GPIOPIN, GPIO.OUT)
 		GPIO.output(self.GPIOPIN, GPIO.LOW)
                 self.set_voltage(0)
-                self.clockwise()
+                self.set_clockwise()
 
 	def set_voltage(self, voltage):
 		if voltage > 4095:
