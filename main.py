@@ -7,7 +7,7 @@ import mpu9250
 # Define settings
 DEBUGON = True
 THRESHOLD = 170
-SCANNING_TIMES = 1000
+SCANNING_TIMES = 3000
 
 g_testVoltage = 190
 inputFile,inputVoltage=argv
@@ -65,11 +65,11 @@ for i in range( SCANNING_TIMES ):
 #	sleep(0.001)
 
 # print the plot (debug)
-    if i == 333:
+    if i == 300:
         print "set voltage: %d"%(g_testVoltage)
         dacLeft.set_voltage(g_testVoltage)
         dacRight.set_voltage(g_testVoltage)
-    if i == 666:
+    if i == 2700:
         print "set voltage: 0"
         dacLeft.set_voltage(0)
         dacRight.set_voltage(0)

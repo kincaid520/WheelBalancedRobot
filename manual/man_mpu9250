@@ -11,5 +11,3 @@ class MPU9250
 	def get_gyro(self)
 		return GyroX, GyroY, GyroZ
 
-	def get_angle(self)
-		return false/angle(double)

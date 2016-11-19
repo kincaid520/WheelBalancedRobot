@@ -97,20 +97,20 @@ class MPU9250:
 		AccelXH = self.ReadReg(ACCEL_XH)
 		AccelXL = self.ReadReg(ACCEL_XL)
 		AccelX = (AccelXH<<8) + AccelXL
-		if AccelXH>>7 == 1:
-			AccelX = AccelX-65536.0
+		#if AccelXH>>7 == 1:
+		#	AccelX = AccelX-65536.0
 
 		AccelYH = self.ReadReg(ACCEL_YH)
 		AccelYL = self.ReadReg(ACCEL_YL)
 		AccelY = (AccelYH<<8) + AccelYL
-		if AccelYH>>7 == 1:
-			AccelY = AccelY-65536.0
+		#if AccelYH>>7 == 1:
+		#	AccelY = AccelY-65536.0
 
 		AccelZH = self.ReadReg(ACCEL_ZH)
 		AccelZL = self.ReadReg(ACCEL_ZL)
 		AccelZ = (AccelZH<<8) + AccelZL
-		if AccelZH>>7 == 1:
-			AccelZ = AccelZ-65536.0
+		#if AccelZH>>7 == 1:
+		#	AccelZ = AccelZ-65536.0
 
 		return AccelX, AccelY, AccelZ
 
@@ -118,28 +118,22 @@ class MPU9250:
 		GyroXH = self.ReadReg(GYRO_XH)
 		GyroXL = self.ReadReg(GYRO_XL)
 		GyroX = (GyroXH<<8) + GyroXL
-		if GyroXH>>7 ==1:
-			GyroX = GyroX-65536.0
+		#if GyroXH>>7 ==1:
+		#	GyroX = GyroX-65536.0
 
 		GyroYH = self.ReadReg(GYRO_YH)
 		GyroYL = self.ReadReg(GYRO_YL)
 		GyroY = (GyroYH<<8) + GyroYL
-		if GyroYH>>7 ==1:
-			GyroY = GyroY-65536.0
+		#if GyroYH>>7 ==1:
+		#	GyroY = GyroY-65536.0
 
 		GyroZH = self.ReadReg(GYRO_ZH)
 		GyroZL = self.ReadReg(GYRO_ZL)
 		GyroZ = (GyroZH<<8) + GyroZL
-		if GyroZH>>7 ==1:
-			GyroZ = GyroZ-65536.0
+		#if GyroZH>>7 ==1:
+		#	GyroZ = GyroZ-65536.0
 
 		return GyroX, GyroY, GyroZ
-
-	def get_angle(self):
-		for i in range(3):
-			if self.accel[i] > self.acceldivider or self.accel[i] < self.acceldivider*(-1):
-				return False
-		return (180/math.pi)*math.acos(self.accel[0]/self.acceldivider), (180/math.pi)*math.asin(self.accel[2]/self.acceldivider)
 
 if __name__ == "__main__":
 	mpu9250 = MPU9250()
@@ -149,6 +143,6 @@ if __name__ == "__main__":
 	while True:
 		mpu9250.accel = mpu9250.get_accel()
 
-		print mpu9250.get_angle()
+		print mpu9250.get_angle()[1]; print mpu9250.get_accel()[2]
 
 		sleep(0.05)
