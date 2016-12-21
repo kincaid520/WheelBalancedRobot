@@ -9,7 +9,7 @@ DEBUGON = True
 THRESHOLD = 170
 SCANNING_TIMES = 3000
 
-g_testVoltage = 190
+g_testVoltage = 500
 inputFile,inputVoltage=argv
 if len(argv) == 2 and type(int(inputVoltage)) is int:
     g_testVoltage = int(inputVoltage)
@@ -65,14 +65,16 @@ for i in range( SCANNING_TIMES ):
 #	sleep(0.001)
 
 # print the plot (debug)
-    if i == 300:
+    if i == 100:
         print "set voltage: %d"%(g_testVoltage)
         dacLeft.set_voltage(g_testVoltage)
         dacRight.set_voltage(g_testVoltage)
-    if i == 2700:
-        print "set voltage: 0"
-        dacLeft.set_voltage(0)
-        dacRight.set_voltage(0)
+        dacLeft.set_clockwise()
+        dacRight.set_counterclockwise()
+    if i == 1500:
+        print "rotating now"
+        dacLeft.set_counterclockwise()
+        dacRight.set_clockwise()
 
 print "Scanning Ended"
 

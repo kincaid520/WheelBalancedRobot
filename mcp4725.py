@@ -32,11 +32,11 @@ class MCP4725:
 
 	def set_voltage(self, voltage):
 		if voltage > 4095:
-			voltage = 4095
+			#voltage = 4095
 			print "WARNING: voltage more than 4095"
                         return -1
 		elif voltage < 0:
-			voltage = 0
+			#voltage = 0
 			print "WARNING: voltage less than 0"
                         return -1
 
